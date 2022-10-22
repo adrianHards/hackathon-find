@@ -29,12 +29,15 @@
                 body: JSON.stringify(params)
               })
             }
-          }
-        )
+            // works but immediate! We need to learn async await
+            // window.location.href = "http://localhost:3000/confirmation";
+          })
 
         document.getElementById("upload_widget").addEventListener("click", function(){
             myWidget.open();
           }, false);
+
+
 
       </script>
       <%# <p class = "text-blue-600">What image should I upload?</p> %>
