@@ -1,23 +1,19 @@
-# Create patients
-require 'faker'
-require 'open-uri'
+puts "making 2 patients"
 
-pat1 = Patient.new(
-  name: Faker::Name.name,
-  phone_numbers: [ Faker::PhoneNumber.phone_number ],
-  location: Faker::Address.city,
-  details: "40 years old, 5'8, tattoo on right forearm"
+patient_1= Patient.new(
+  location: 'Харків',
+  phone_numbers: '+380 63 476 0206'
 )
-file = URI.open("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80")
-pat1.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-pat1.save
+file = URI.open("https://res.cloudinary.com/detwvcqim/image/upload/v1666449758/development/v27sf24hlntxsl6xjczlygho7iay.jpg")
+patient_1.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+patient_1.save!
 
-pat2 = Patient.new(
-  name: Faker::Name.name,
-  phone_numbers: [ Faker::PhoneNumber.phone_number ],
-  location: Faker::Address.city,
-  details: "40 years old, 5'8, tattoo on right forearm"
+patient_2= Patient.new(
+  location: 'Сімферополь',
+  phone_numbers: '+380 97 150 7053'
 )
-file = URI.open("https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
-pat2.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-pat2.save
+file = URI.open("https://res.cloudinary.com/detwvcqim/image/upload/v1666449759/development/p741nusme1tcrjnv9srvyjgjqxoa.jpg")
+patient_2.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+patient_2.save!
+
+puts "made #{Patient.count} patients"
