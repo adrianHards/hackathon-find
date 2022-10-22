@@ -1,8 +1,17 @@
 class PatientsController < ApplicationController
-  def patients_params
-    params.require(:patient).permit(:first_name, :last_name, :phone_numbers [], :location, :details, :photo)
-  end
+
+  # skip_before_action :authenticate_user!, only: [:upload, :confirmation]
+
 
   def upload
+  end
+
+  def confirmation
+  end
+
+  def index
+  end
+
+  def show
   end
 end
