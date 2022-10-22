@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: "patients#upload"
-
-  resources :patients, only: [:home, :show, :index]
+  
+  resources :patients, only: [:create, :show, :index]
   get "/confirmation", to: "patients#confirmation", as: :confirmation
-
 end

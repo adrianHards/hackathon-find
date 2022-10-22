@@ -51,6 +51,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_100909) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+=======
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+>>>>>>> a18b3b5183bd7f034d745aca96839ff333b44d29
 end
