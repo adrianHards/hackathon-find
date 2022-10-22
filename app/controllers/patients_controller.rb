@@ -4,18 +4,17 @@ require "net/http"
 
 class PatientsController < ApplicationController
   skip_before_action :verify_authenticity_token
-# skip_before_action :authenticate_user!, only: [:upload, :confirmation]
 
   def upload
-
   end
 
-  def send_cloudinary
-    redirect_to confirmation_path(url: request.request_parameters[:key])
+  def cloudinary
+    url = params[:results][:url]
+    session[:url] = url
   end
 
   def confirmation
-    user_photo = "https://res.cloudinary.com/detwvcqim/image/upload/v1666449758/development/v27sf24hlntxsl6xjczlygho7iay.jpg"
+    user_photo = session[:url]
     @patients = Patient.all
     @patient_array = []
     @match = nil
