@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2022_10_22_100909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "patients", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name", default: [], array: true
     t.string "phone_numbers", default: [], array: true
     t.string "location"
     t.text "details"
@@ -25,10 +23,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_100909) do
     t.datetime "updated_at", null: false
   end
 
-=======
-ActiveRecord::Schema[7.0].define(version: 0) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
->>>>>>> 0690475115b89fa794794a6d1f554ca7a23bee0d
 end
