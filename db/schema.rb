@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_103729) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_100909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+    create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -43,8 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_103729) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name", default: [], array: true
     t.string "phone_numbers", default: [], array: true
     t.string "location"
     t.text "details"
