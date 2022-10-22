@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :patients, only: [:create, :show, :index]
   get "/confirmation", to: "patients#confirmation", as: :confirmation
 
-  post "/upload", to: "patients#upload", as: :upload
+  post "/send_cloudinary", to: "patients#send_cloudinary", as: :send_cloudinary
 end

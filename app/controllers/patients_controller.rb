@@ -3,9 +3,15 @@ require "json"
 require "net/http"
 
 class PatientsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+# skip_before_action :authenticate_user!, only: [:upload, :confirmation]
 
   def upload
-    #  confirmation(request.request_parameters[:key])
+
+  end
+
+  def send_cloudinary
+    redirect_to confirmation_path(url: request.request_parameters[:key])
   end
 
   def confirmation
@@ -13,7 +19,6 @@ class PatientsController < ApplicationController
     @patients = Patient.all
     @patient_array = []
     @match = nil
-
 
     for patient in @patients
       @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location]
