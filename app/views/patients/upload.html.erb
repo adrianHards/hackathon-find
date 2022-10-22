@@ -11,11 +11,11 @@
         if (!error && result && result.event === "success") { 
           console.log('Done! Here is the image info: ', result.info); 
           const requestOptions = {
-              method: 'POST',
+            method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ key: result.info.url })
           };
-          fetch('http://127.0.0.1:3000/upload', requestOptions)
+          fetch('http://127.0.0.1:3000/send_cloudinary', requestOptions)
             .then(response => response.json())
             .then(data => console.log(data) );
         }

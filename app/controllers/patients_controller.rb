@@ -3,19 +3,25 @@ require "json"
 require "net/http"
 
 class PatientsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+# skip_before_action :authenticate_user!, only: [:upload, :confirmation]
 
   def upload
-     confirmation(request.request_parameters[:key])
   end
 
-  def confirmation(url)
-    user_photo = url
+  def send_cloudinary
+    redirect_to confirmation_path(url: request.request_parameters[:key])
+  end
+
+  def confirmation
+    render :confirmation
+    user_photo = params[:url]
     patients = Patient.all
     patient_array = []
     @match = nil
 
-    for patient in @patients
-      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/production/#{patient.photo.key}.jpg"], patient.location]
+    for patient in patients
+      patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/production/#{patient.photo.key}.jpg"], patient.location]
     end
 
     url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
@@ -35,11 +41,10 @@ class PatientsController < ApplicationController
       })
 
       response = https.request(request)
-
-      if response['data']['similarPercent'] > 0.5
-        @match = patient[1]
+        if response['data']['similarPercent'] > 0.5
+          @match = patient[1]
+        end
       end
-    end
   end
 
   def create
