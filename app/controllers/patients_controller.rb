@@ -14,7 +14,6 @@ class PatientsController < ApplicationController
   end
 
   def confirmation
-    render :confirmation
     user_photo = params[:url]
     patients = Patient.all
     patient_array = []
