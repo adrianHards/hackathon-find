@@ -14,8 +14,8 @@ class PatientsController < ApplicationController
     patient_array = []
     @match = nil
 
-    for patient in @patients
-      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/production/#{patient.photo.key}.jpg"], patient.location]
+    for patient in patients
+      patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/production/#{patient.photo.key}.jpg"], patient.location]
     end
 
     url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
