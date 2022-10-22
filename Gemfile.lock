@@ -88,6 +88,8 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.11.0)
+    faker (2.23.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -214,6 +216,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
+  faker
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
