@@ -4,17 +4,18 @@ class PatientsController < ApplicationController
 # skip_before_action :authenticate_user!, only: [:upload, :confirmation]
 
 
-def upload
-end
+  def upload
+  end
 
-def confirmation
-end
+  def confirmation
+  end
 
-def index
-end
+  def index
+  end
 
-def show
-end
+  def show
+  end
+  
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
@@ -23,7 +24,6 @@ end
       render json: @patient.errors, status: :unprocessable_entity
     end
   end
-
 
   private
 
