@@ -4,6 +4,7 @@ class PatientsController < ApplicationController
 # skip_before_action :authenticate_user!, only: [:upload, :confirmation]
 
   def upload
+     confirmation(request.request_parameters[:key])
   end
 
   def confirmation
