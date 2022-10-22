@@ -14,6 +14,7 @@ class PatientsController < ApplicationController
     @patient_array = []
     @match = nil
 
+
     for patient in @patients
       @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location]
     end
@@ -59,5 +60,4 @@ class PatientsController < ApplicationController
   def patient_params
     params.require(:patient).permit(:name, :phone_numbers, :location, :details, :photo)
   end
-
 end
