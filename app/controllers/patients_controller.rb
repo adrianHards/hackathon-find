@@ -41,8 +41,10 @@ class PatientsController < ApplicationController
       })
 
       response = https.request(request)
+      # Changed data to instance variable to pass to view page
       @data = JSON.parse(response.read_body)
-
+      
+    # Commented out for testing
       # if data["data"]["similarPercent"] > 0.75
       #   @match = patient[1]
       # end
