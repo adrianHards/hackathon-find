@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: "patients#upload"
+  get "/confirmation", to: "patients#confirmation", as: :confirmation
 
-  # Defines the root path route ("/")
-  # root "articles#index"
   resources :patients, only: [:create, :show, :index]
 
 end
