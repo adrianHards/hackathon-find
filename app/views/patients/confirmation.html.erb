@@ -1,0 +1,32 @@
+<div data-controller="facial-recognition"></div>
+
+
+
+
+<% if @match == nil %>
+
+
+
+
+
+
+
+
+
+
+url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Post.new(url)
+    request["Authorization"] = "Bearer 200|5wXskwfYR8LdkrP3Qmr3guSuZvYZmobzNcqoc3oN"
+    request["Content-Type"] = "application/json"
+
+    request.body = JSON.dump({
+      "linkFile1": cloudinary,
+      "linkFile2": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Angelina_Jolie_2_June_2014_%28cropped%29.jpg/640px-Angelina_Jolie_2_June_2014_%28cropped%29.jpg"
+    })
+
+    response = https.request(request)
+    puts response.read_body
