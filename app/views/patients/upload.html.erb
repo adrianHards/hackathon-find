@@ -14,7 +14,8 @@
           uploadPreset: 'z6x5lslv'},
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log('Done! Here is the image info: ', result.info.url);
+              // Redirect to confirmation page if upload to cloudinary is successful. NO USER CONFIRMATION NEEDED
+              window.location.href = "http://localhost:3000/confirmation";
 
             const params = {
               results: {
@@ -29,8 +30,6 @@
                 body: JSON.stringify(params)
               })
             }
-            // works but immediate! We need to learn async await
-            // window.location.href = "http://localhost:3000/confirmation";
           })
 
         document.getElementById("upload_widget").addEventListener("click", function(){
