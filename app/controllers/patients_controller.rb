@@ -1,5 +1,7 @@
 class PatientsController < ApplicationController
+
   # skip_before_action :authenticate_user!, only: [:upload, :confirmation]
+
 
   def upload
   end
