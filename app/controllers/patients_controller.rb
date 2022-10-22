@@ -5,17 +5,18 @@ require "net/http"
 class PatientsController < ApplicationController
 
   def upload
-     confirmation(request.request_parameters[:key])
+    #  confirmation(request.request_parameters[:key])
   end
 
-  def confirmation(url)
-    user_photo = url
-    patients = Patient.all
-    patient_array = []
+  def confirmation
+    user_photo = "https://res.cloudinary.com/detwvcqim/image/upload/v1666449758/development/v27sf24hlntxsl6xjczlygho7iay.jpg"
+    @patients = Patient.all
+    @patient_array = []
     @match = nil
 
-    for patient in patients
-      patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/production/#{patient.photo.key}.jpg"], patient.location]
+
+    for patient in @patients
+      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location]
     end
 
     url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
@@ -24,22 +25,25 @@ class PatientsController < ApplicationController
     https.use_ssl = true
 
     request = Net::HTTP::Post.new(url)
-    request["Authorization"] = "Bearer 200|5wXskwfYR8LdkrP3Qmr3guSuZvYZmobzNcqoc3oN"
+    request["Authorization"] = "Bearer 203|ZbT5yHubmUCZVpqMMZwsNaos6hop7TA6GcEFTfaH"
     request["Content-Type"] = "application/json"
 
-    patient_array.each do | patient |
-
+    @patient_array.each do | patient |
       request.body = JSON.dump({
-        "linkFile1": user_photo,
-        "linkFile2": patient[0]
+
+        "linkFile1": user_photo.to_s,
+        "linkFile2": patient[0].join.to_s
+
       })
 
       response = https.request(request)
+      data = JSON.parse(response.read_body)
 
-      if response['data']['similarPercent'] > 0.5
+      if data["data"]["similarPercent"] > 0.75
         @match = patient[1]
       end
     end
+
   end
 
   def create
