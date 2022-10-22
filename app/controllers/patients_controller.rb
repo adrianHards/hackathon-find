@@ -14,7 +14,7 @@ class PatientsController < ApplicationController
 
   def show
   end
-  
+
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
@@ -28,5 +28,5 @@ class PatientsController < ApplicationController
 
   def patient_params
     params.require(:patient).permit(:name, :phone_numbers, :location, :details, :photo)
-
+  end
 end
