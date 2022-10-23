@@ -45,7 +45,7 @@ class PatientsController < ApplicationController
     @match = nil
 
     for patient in @patients
-      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers]
+      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers, patient.name]
     end
 
     # url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
@@ -72,11 +72,9 @@ class PatientsController < ApplicationController
     #     @match = patient[1]
     #   end
     # end
-
     # response = https.request(request)
     # @data = JSON.parse(response.read_body)
-
-      if 1 > 0.75
+      if patient[3].empty?
         pat = Patient.find_by(location: patient[1])
         @match = patient
         pat.name.push(session[:name])

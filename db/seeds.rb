@@ -9,6 +9,7 @@ patient_0.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
 patient_0.save!
 
 patient_1= Patient.new(
+  name: ['di'],
   location: 'Сімферополь',
   phone_numbers: '+380 97 150 7053'
 )
@@ -17,6 +18,7 @@ patient_1.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
 patient_1.save!
 
 patient_2= Patient.new(
+  name: ['vitali'],
   location: 'Харків',
   phone_numbers: '+380 97 150 7053'
 )
@@ -25,6 +27,7 @@ patient_2.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
 patient_2.save!
 
 patient_3= Patient.new(
+  name: ['Zelensky'],
   location: 'Львів',
   phone_numbers: '+380 97 150 7053'
 )
@@ -33,6 +36,7 @@ patient_3.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
 patient_3.save!
 
 patient_4= Patient.new(
+  name: ['Kamil'],
   location: 'Вінниця',
   phone_numbers: '+380 97 150 7053'
 )
