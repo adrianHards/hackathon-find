@@ -29,7 +29,7 @@ class PatientsController < ApplicationController
     https.use_ssl = true
 
     request = Net::HTTP::Post.new(url)
-    request["Authorization"] = "Bearer 203|ZbT5yHubmUCZVpqMMZwsNaos6hop7TA6GcEFTfaH"
+    request["Authorization"] = "Bearer 208|cl0kTVueOah24aiGf7Ke0uZvJJYU5SryjUWc4pBR"
     request["Content-Type"] = "application/json"
 
     @patient_array.each do | patient |
@@ -41,11 +41,13 @@ class PatientsController < ApplicationController
       })
 
       response = https.request(request)
-      data = JSON.parse(response.read_body)
-
-      if data["data"]["similarPercent"] > 0.75
-        @match = patient[1]
-      end
+      # Changed data to instance variable to pass to view page
+      @data = JSON.parse(response.read_body)
+      
+    # Commented out for testing
+      # if data["data"]["similarPercent"] > 0.75
+      #   @match = patient[1]
+      # end
     end
 
   end
