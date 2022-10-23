@@ -1,0 +1,14 @@
+<div class="container">
+  <div class = "top-container relative pt-20 pb-20 grid justify-items-center">
+      <% if @patients_matched %>
+        <% @patients_matched.each do |patient| %>
+          <div class="card">
+            <%# <%= link_to patient.name.join,  %>
+            <%= link_to patient.location, edit_patient_path(patient) %>
+          </div>
+        <% end %>
+      <% end %>
+    <%= image_tag "home-bg.png", class: "z-0 relative bottom-0" %>
+
+  </div>
+</div>

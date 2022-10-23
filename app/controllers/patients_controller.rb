@@ -9,7 +9,21 @@ class PatientsController < ApplicationController
   end
 
   def index
-    @patients = Patient.all.select { :name.present? }
+
+    @patients_matched = Patient.all.select { :name.present? }
+  end
+
+  def edit
+    @patient = Patient.find(params[:id])
+  end
+
+  def update
+    @patient = Patient.find(params[:id])
+    @patient.name = params[:id]
+    @patient.phone_numbers = params[:phone_numbers]
+    @patient.location = params[:location]
+    @patient.details = params[:details]
+    redirect_to patient_path(@patient)
   end
 
   def cloudinary
@@ -62,6 +76,12 @@ class PatientsController < ApplicationController
 
       response = https.request(request)
       @data = JSON.parse(response.read_body)
+      # Commented out for testing
+      # if data["data"]["similarPercent"] > 0.75
+      #   @match = patient[1]
+      # end
+    end
+
 
       # condition to match patients to missing persons
       if 1 > 0.75
