@@ -29,22 +29,22 @@ class PatientsController < ApplicationController
   def cloudinary
     name = params[:results][:name]
     session[:name] = name
-    
+
     phone_number = params[:results][:phoneNumber]
     session[:phone_number] = phone_number
 
     url = params[:results][:url]
     session[:url] = url
   end
-  
+
   def confirmation
     user_photo = session[:url]
     user_name = session[:name]
     user_phone_number = session[:phone_number]
     @patients = Patient.all
     @patient_array = []
-
     @match = nil
+
     for patient in @patients
       @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers]
     end
@@ -55,10 +55,10 @@ class PatientsController < ApplicationController
     # https.use_ssl = true
 
     # request = Net::HTTP::Post.new(url)
-    # request["Authorization"] = "Bearer 209|Qy8ojyEaqj8cRHCtXcuycI4uqIq1h6xAU6bIEgLb"
+    # request["Authorization"] = ENV['ZYLA']
     # request["Content-Type"] = "application/json"
 
-    # @patient_array.each do | patient |
+    @patient_array.each do | patient |
     #   request.body = JSON.dump({
 
     #     "linkFile1": user_photo.to_s,
@@ -74,16 +74,10 @@ class PatientsController < ApplicationController
     #   end
     # end
 
-      response = https.request(request)
-      @data = JSON.parse(response.read_body)
-      # Commented out for testing
-      # if data["data"]["similarPercent"] > 0.75
-      #   @match = patient[1]
-      # end
-    end
+    # response = https.request(request)
+    # @data = JSON.parse(response.read_body)
 
 
-      # condition to match patients to missing persons
       if 1 > 0.75
         pat = Patient.find_by(location: patient[1])
         @match = patient
@@ -91,8 +85,8 @@ class PatientsController < ApplicationController
         pat.details = (session[:phone_number])
         pat.save!
       end
-
     end
+
   end
 
   def create
