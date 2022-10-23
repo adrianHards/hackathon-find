@@ -3,16 +3,30 @@
   <h3 class ="text-blue-600 text-[15px] leading-8 text-left font-poppins mb-3">Central Hospital SBU</h3>
       <% if @patients_matched %>
         <% @patients_matched.each do |patient| %>
-          <div class="bg-blue-100 rounded-md flex flex-row justify-between p-3">
-            <%# <%= link_to patient.name.join,  %>
-            <div class="patient-info-left">
-              <div class="patient-info text-left font-poppins text-blue-600"><p>Patient  <%= link_to patient.name, edit_patient_path(patient) %></p>
+          <%= link_to edit_patient_path(patient) do %>
+            <div class="bg-blue-100 rounded-md flex flex-row justify-between p-3">
+              <div class="patient-info-left">
+                <div class="patient-info text-left font-poppins text-blue-600">
+                  <p>Patient: <%= patient.name.first %></p>
+                </div>
+                <br>
+                <div class="patient-info text-left font-poppins text-blue-600">
+                  <p>Location: <%= patient.location %></p>
+                </div>
+                <br>
+                <div class="patient-info text-left font-poppins text-blue-600">
+                  <p>Phone number: <%= patient.phone_numbers %></p>
+                </div>
+                <br>
+                <div class="patient-info text-left font-poppins text-blue-600">
+                  <p>Details: <%= patient.details %></p>
+                </div>
               </div>
-              <div class="patient-info text-left font-poppins text-blue-600"><p>Location: <%= link_to patient.location, edit_patient_path(patient) %></p>
-              </div>
+              <div class="patient-info text-left font-poppins">
+                <p class = "text-yellow-600 bg-yellow-100 p-2 rounded-lg">
+                <%= link_to "Pending", edit_patient_path(patient) %></p>
             </div>
-            <div class="patient-info text-left font-poppins"><p class = "text-yellow-600 bg-yellow-100 p-2 rounded-lg"><%= link_to "Pending", edit_patient_path(patient) %></p>
-          </div>
+          <% end %>
         <% end %>
       <% end %>
   </div>
