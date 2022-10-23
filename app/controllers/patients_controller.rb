@@ -77,7 +77,6 @@ class PatientsController < ApplicationController
     # response = https.request(request)
     # @data = JSON.parse(response.read_body)
 
-
       if 1 > 0.75
         pat = Patient.find_by(location: patient[1])
         @match = patient
