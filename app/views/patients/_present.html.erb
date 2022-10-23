@@ -1,0 +1,11 @@
+<div class = "container-confirmation-present p-10 justify-center h-screen w-screen">
+  <div class = "grid justify-items-center text-center font-poppins">
+    <%= image_tag "match.png", class: "mb-3" %>
+    <h5 class = "text-blue-600  text-[13px] px-5 py-2 rounded-lg mt-8 mb-4 stroke-1 stroke-blue-600 bg-blue-100 tracking-widest">REFERENCE ID 918273</h4>
+    <h1 class = "text-blue-600 text-[30px] leading-9 mt-6 mb-6 font-bold">Your image matched a potential patient <br> in <%= @patient[1] %></h1>
+    <hr class="bg-gray-200 border-1">
+    <h3 class = "text-blue-600 text-[15px] leading-6 m-3">Please contact <%= @patient[2] %> with <br>your reference ID for further details</h3>
+    <h4 class = "bg-blue-600 text-white px-7 py-3 rounded-lg mt-8 mb-4">Submit another image</h4>
+    <h4 class = "text-blue-600 text-[13px] underline">Find other resources</h4>
+  </div>
+</div>

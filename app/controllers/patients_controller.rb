@@ -29,27 +29,36 @@ class PatientsController < ApplicationController
     user_phone_number = session[:phone_number]
     @patients = Patient.all
     @patient_array = []
+
     @match = nil
     for patient in @patients
       @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers]
     end
 
-    url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
+    # url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
 
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
+    # https = Net::HTTP.new(url.host, url.port)
+    # https.use_ssl = true
 
-    request = Net::HTTP::Post.new(url)
-    request["Authorization"] = "Bearer 211|tsYILDwf9nHrRgyVbZ8chqkKJAtayNISLquFOAal"
-    request["Content-Type"] = "application/json"
+    # request = Net::HTTP::Post.new(url)
+    # request["Authorization"] = "Bearer 209|Qy8ojyEaqj8cRHCtXcuycI4uqIq1h6xAU6bIEgLb"
+    # request["Content-Type"] = "application/json"
 
-    @patient_array.each do | patient |
-      request.body = JSON.dump({
+    # @patient_array.each do | patient |
+    #   request.body = JSON.dump({
 
-        "linkFile1": user_photo.to_s,
-        "linkFile2": patient[0].join.to_s
+    #     "linkFile1": user_photo.to_s,
+    #     "linkFile2": patient[0].join.to_s
 
-      })
+    #   })
+
+    #   response = https.request(request)
+    #   @data = JSON.parse(response.read_body)
+
+    #   if @data["data"]["similarPercent"] > 0.75
+    #     @match = patient[1]
+    #   end
+    # end
 
       response = https.request(request)
       @data = JSON.parse(response.read_body)
