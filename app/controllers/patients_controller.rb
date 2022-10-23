@@ -9,7 +9,21 @@ class PatientsController < ApplicationController
   end
 
   def index
-    @patients = Patient.all.select { :name.present? }
+
+    @patients_matched = Patient.all.select { :name.present? }
+  end
+
+  def edit
+    @patient = Patient.find(params[:id])
+  end
+
+  def update
+    @patient = Patient.find(params[:id])
+    @patient.name = params[:id]
+    @patient.phone_numbers = params[:phone_numbers]
+    @patient.location = params[:location]
+    @patient.details = params[:details]
+    redirect_to patient_path(@patient)
   end
 
   def cloudinary
@@ -62,6 +76,7 @@ class PatientsController < ApplicationController
 
     # response = https.request(request)
     # @data = JSON.parse(response.read_body)
+
 
       if 1 > 0.75
         pat = Patient.find_by(location: patient[1])

@@ -1,0 +1,14 @@
+<%# let's create a nice card where to wrap the patient info and edit them %>
+
+
+<div class="container">
+  <div class = "top-container relative pt-20 pb-20 grid justify-items-center">
+    <%= @patient.name %>
+    <%= @patient.phone_numbers %>
+    <%= @patient.location %>
+    <%= @patient.details %>
+
+    <%= image_tag "home-bg.png", class: "z-0 relative bottom-0" %>
+
+  </div>
+</div>
