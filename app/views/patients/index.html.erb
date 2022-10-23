@@ -1,14 +1,20 @@
 <div class="container">
-  <div class = "top-container relative pt-20 pb-20 grid justify-items-center">
+  <div class = "top-container relative h-screen w-screen grid justify-items-center">
       <% if @patients_matched %>
         <% @patients_matched.each do |patient| %>
-          <div class="card">
+          <div class="card bg-blue-100 mb-2.5 rounded-md">
             <%# <%= link_to patient.name.join,  %>
-            <%= link_to patient.location, edit_patient_path(patient) %>
+            <div class="patient-info text-left font-poppins text-blue-600 px-10"><p>Name: </p>
+              <%= link_to patient.name, edit_patient_path(patient) %>
+            </div>
+            <br>
+            <div class="patient-info text-left font-poppins text-blue-600 px-10"><p>Location: </p><%= link_to patient.location, edit_patient_path(patient) %>
+            </div>
+            <br>
+            <div class="patient-info text-left font-poppins text-blue-600 px-10"><p>Details: </p><%= link_to patient.details, edit_patient_path(patient) %>
+            </div>
           </div>
         <% end %>
       <% end %>
-    <%= image_tag "home-bg.png", class: "z-0 relative bottom-0" %>
-
   </div>
 </div>
