@@ -58,7 +58,7 @@ class PatientsController < ApplicationController
     # request["Authorization"] = "Bearer 209|Qy8ojyEaqj8cRHCtXcuycI4uqIq1h6xAU6bIEgLb"
     # request["Content-Type"] = "application/json"
 
-    # @patient_array.each do | patient |
+    @patient_array.each do | patient |
     #   request.body = JSON.dump({
 
     #     "linkFile1": user_photo.to_s,
