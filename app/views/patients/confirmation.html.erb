@@ -1,5 +1,11 @@
-<h1>Confirmation</h1>
 <div data-controller="facial-recognition">
-  <% if @match == nil %>
+
+  <% if @match.nil? %>
+     <%= render "nil" %>
   <% end %>
+
+  <% if @match.present? %>
+    <%= render "present" %>
+  <% end %>
+
 </div>
