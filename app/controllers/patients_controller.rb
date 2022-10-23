@@ -20,7 +20,7 @@ class PatientsController < ApplicationController
     @match = nil
 
     for patient in @patients
-      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location]
+      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers]
     end
 
     url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
@@ -29,7 +29,7 @@ class PatientsController < ApplicationController
     https.use_ssl = true
 
     request = Net::HTTP::Post.new(url)
-    request["Authorization"] = "Bearer 203|ZbT5yHubmUCZVpqMMZwsNaos6hop7TA6GcEFTfaH"
+    request["Authorization"] = "Bearer 209|Qy8ojyEaqj8cRHCtXcuycI4uqIq1h6xAU6bIEgLb"
     request["Content-Type"] = "application/json"
 
     @patient_array.each do | patient |
@@ -44,10 +44,10 @@ class PatientsController < ApplicationController
       data = JSON.parse(response.read_body)
 
       if data["data"]["similarPercent"] > 0.75
-        @match = patient[1]
+        @match = patient
       end
-    end
 
+    end
   end
 
   def create
