@@ -8,6 +8,23 @@ class PatientsController < ApplicationController
   def upload
   end
 
+  def index
+    @patients_matched = Patient.all.select { :name.present? }
+  end
+
+  def edit
+    @patient = Patient.find(params[:id])
+  end
+
+  def update
+    @patient = Patient.find(params[:id])
+    @patient.name = params[:id]
+    @patient.phone_numbers = params[:phone_numbers]
+    @patient.location = params[:location]
+    @patient.details = params[:details]
+    redirect_to patient_path(@patient)
+  end
+
   def cloudinary
     url = params[:results][:url]
     session[:url] = url
@@ -43,7 +60,7 @@ class PatientsController < ApplicationController
       response = https.request(request)
       # Changed data to instance variable to pass to view page
       @data = JSON.parse(response.read_body)
-      
+
     # Commented out for testing
       # if data["data"]["similarPercent"] > 0.75
       #   @match = patient[1]
