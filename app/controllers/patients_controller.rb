@@ -43,8 +43,8 @@ class PatientsController < ApplicationController
     user_phone_number = session[:phone_number]
     @patients = Patient.all
     @patient_array = []
-
     @match = nil
+
     for patient in @patients
       @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers]
     end
@@ -58,7 +58,7 @@ class PatientsController < ApplicationController
     # request["Authorization"] = ENV['ZYLA']
     # request["Content-Type"] = "application/json"
 
-    # @patient_array.each do | patient |
+    @patient_array.each do | patient |
     #   request.body = JSON.dump({
 
     #     "linkFile1": user_photo.to_s,
@@ -74,29 +74,18 @@ class PatientsController < ApplicationController
     #   end
     # end
 
-<<<<<<< HEAD
     # response = https.request(request)
     # @data = JSON.parse(response.read_body)
-=======
-      response = https.request(request)
-      @data = JSON.parse(response.read_body)
-      # Commented out for testing
-      # if data["data"]["similarPercent"] > 0.75
-      #   @match = patient[1]
-      # end
+
+      if 1 > 0.75
+        pat = Patient.find_by(location: patient[1])
+        @match = patient
+        pat.name.push(session[:name])
+        pat.details = (session[:phone_number])
+        pat.save!
+      end
     end
 
->>>>>>> 34390a503c7fde1555941e0464576b8ae8a2f6ef
-
-    if 1 > 0.75
-      pat = Patient.find_by(location: patient[1])
-      @match = patient
-      pat.name.push(session[:name])
-      pat.details = (session[:phone_number])
-      pat.save!
-    end
-
-    end
   end
 
   def create
