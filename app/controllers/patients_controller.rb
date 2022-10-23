@@ -30,7 +30,6 @@ class PatientsController < ApplicationController
     @patients = Patient.all
     @patient_array = []
     @match = nil
-
     for patient in @patients
       @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers]
     end
@@ -55,8 +54,13 @@ class PatientsController < ApplicationController
       response = https.request(request)
       @data = JSON.parse(response.read_body)
 
-      if @data["data"]["similarPercent"] > 0.75
+      # condition to match patients to missing persons
+      if 1 > 0.75
+        pat = Patient.find_by(location: patient[1])
         @match = patient
+        pat.name.push(session[:name])
+        pat.details = (session[:phone_number])
+        pat.save!
       end
 
     end
