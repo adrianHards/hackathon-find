@@ -9,7 +9,7 @@ class PatientsController < ApplicationController
   end
 
   def index
-    @patients_matched = Patient.all.select { :name.present? }
+    @patients_matched = Patient.where.not(name: [])
   end
 
   def edit
