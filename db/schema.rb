@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_103729) do
 
   create_table "patients", force: :cascade do |t|
     t.string "name", default: [], array: true
-    t.string "phone_numbers", default: [], array: true
+    t.string "phone_numbers"
     t.string "location"
     t.text "details"
     t.datetime "created_at", null: false
