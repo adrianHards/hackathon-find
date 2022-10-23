@@ -9,6 +9,7 @@ class PatientsController < ApplicationController
   end
 
   def index
+    @patients = Patient.all.select { | patient | patient.name.present? }
   end
 
   def cloudinary
