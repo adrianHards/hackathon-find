@@ -8,6 +8,10 @@ class PatientsController < ApplicationController
   def upload
   end
 
+  def index
+    @patients = Patient.all.select { :name.present? }
+  end
+
   def cloudinary
     url = params[:results][:url]
     session[:url] = url
@@ -19,9 +23,9 @@ class PatientsController < ApplicationController
     # @patient_array = []
     @match = nil
 
-    # for patient in @patients
-    #   @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location]
-    # end
+    for patient in @patients
+      @patient_array << [["https://res.cloudinary.com/detwvcqim/image/upload/development/#{patient.photo.key}.jpg"], patient.location, patient.phone_numbers]
+    end
 
     # url = URI("https://zylalabs.com/api/30/face+comparison+validator+api/94/compare+image+with+image+url")
 
@@ -41,15 +45,21 @@ class PatientsController < ApplicationController
     #   })
 
     #   response = https.request(request)
-    #   # Changed data to instance variable to pass to view page
     #   @data = JSON.parse(response.read_body)
 
-    # # Commented out for testing
-    #   if data["data"]["similarPercent"] > 0.75
+    #   if @data["data"]["similarPercent"] > 0.75
     #     @match = patient[1]
     #   end
     # end
 
+      response = https.request(request)
+      @data = JSON.parse(response.read_body)
+
+      if @data["data"]["similarPercent"] > 0.75
+        @match = patient
+      end
+
+    end
   end
 
   def create
