@@ -4,7 +4,7 @@ require "net/http"
 
 class PatientsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_patient, only: %i[create edit show update]
+  before_action :set_patient, only: %i[create edit show update destroy]
 
   def upload
   end
@@ -42,15 +42,15 @@ class PatientsController < ApplicationController
   end
 
   def destroy
+    @patient.destroy
+    redirect_to patients_path, status: :see_other
   end
 
   def cloudinary
     name = params[:results][:name]
     session[:name] = name
-
     phone_number = params[:results][:phoneNumber]
     session[:phone_number] = phone_number
-
     url = params[:results][:url]
     session[:url] = url
   end
